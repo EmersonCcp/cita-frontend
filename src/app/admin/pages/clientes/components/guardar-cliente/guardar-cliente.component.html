@@ -1,0 +1,70 @@
+<div class="flex items-center justify-between mx-12 my-6 ">
+  <div class="flex items-center text-3xl" style="color: #033649;">
+    <button routerLink="/admin/clientes" title="Atras" mat-icon-button>
+      <mat-icon>arrow_back</mat-icon>
+    </button>{{title}}
+  </div>
+</div>
+
+<div class="mx-12 bg-white rounded-md shadow-md">
+  <div class="pt-5 pl-10 text-lg font-semibold" style="color: #033649;">{{subtitle}} <span
+      style="color: #d7d7d7;">#{{id}}</span></div>
+
+  <form [formGroup]="form" class="p-10 ">
+    <div class="grid grid-cols-3 gap-5">
+      <mat-form-field appearance="fill">
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" placeholder="Ingrese el nombre" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" placeholder="Ingrese el apellido" required>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Telefono</mat-label>
+        <input matInput formControlName="telefono" placeholder="Ingrese el telefono" required>
+      </mat-form-field>
+    </div>
+
+    <div class="grid grid-cols-3 gap-5">
+      <mat-form-field appearance="fill">
+        <mat-label>Sexo</mat-label>
+        <mat-select formControlName="sexo" [(value)]="selectedOption">
+          <mat-option disabled value="default">Seleccione el sexo</mat-option>
+          <mat-option value="m">Masculino</mat-option>
+          <mat-option value="f">Femenino</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de Nacimiento</mat-label>
+        <input matInput formControlName="fecha_nacimiento" [matDatepicker]="picker" placeholder="Fecha de nacimiento">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" formControlName="email" placeholder="Ingrese el email" required>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Direccion</mat-label>
+      <input matInput formControlName="direccion" placeholder="Ingrese la direccion" required>
+    </mat-form-field>
+
+    <div class="flex justify-end gap-5">
+      <div class="example-button-row">
+        <button routerLink="/admin/clientes" mat-flat-button
+          style="color: #033649;border-radius: 50px;border: 1px solid #033649;">Cancelar</button>
+      </div>
+      <div class="example-button-row">
+        <button (click)="ngSubmit()" mat-flat-button
+          style="background-color: #3dcd4e;color: #fff;border-radius: 50px;">Guardar</button>
+      </div>
+    </div>
+  </form>
+</div>

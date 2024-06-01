@@ -1,0 +1,88 @@
+<div class="p-5 mt-6 bg-white rounded-md mat-elevation-z8">
+  <div>
+    <div class="font-semibold" style="color: #033649;">Listado de Citas</div>
+
+    <form class="my-3">
+      <mat-form-field style="width: 50%;" appearance="outline">
+        <mat-icon matPrefix style="color: #b7b7b7;">search</mat-icon>
+        <input class="ml-6" matInput placeholder="Buscar">
+      </mat-form-field>
+    </form>
+  </div>
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> N° </th>
+      <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="nombrecompleto">
+      <th mat-header-cell *matHeaderCellDef> Cliente </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombreCompleto}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef> Fecha </th>
+      <td mat-cell *matCellDef="let element"> {{element.fecha | date}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="hora">
+      <th mat-header-cell *matHeaderCellDef> Hora </th>
+      <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="monto">
+      <th mat-header-cell *matHeaderCellDef> Monto Total </th>
+      <td mat-cell *matCellDef="let element"> {{element.monto | paraguayCurrency}} </td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef> Estado </th>
+      <td mat-cell *matCellDef="let element"> <span [ngClass]="getEstadoClass(element.estado)">{{element.estado |
+          uppercase}}</span> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="changeEstado">
+      <th mat-header-cell *matHeaderCellDef> Cambiar Estado </th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="changeEstado(element.id, 'Completado')" title="Completado" mat-icon-button>
+          <mat-icon style="color: #00a50b;">check</mat-icon>
+        </button>
+        <button (click)="changeEstado(element.id, 'Pendiente')" title="Pendiente" mat-icon-button>
+          <mat-icon style="color: #033649;">autorenew</mat-icon>
+        </button>
+        <button (click)="changeEstado(element.id, 'Cancelado')" title="Cancelado" mat-icon-button color="warn">
+          <mat-icon>close</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <!-- Acción Column -->
+    <ng-container matColumnDef="accion">
+      <th mat-header-cell *matHeaderCellDef> Acción </th>
+      <td mat-cell *matCellDef="let element">
+        <button title="Ver" [routerLink]="'guardar-cita/'+element.id+'/view'" mat-icon-button color="primary">
+          <mat-icon style="color: #033649;">visibility</mat-icon>
+        </button>
+        <button title="Editar" [routerLink]="'guardar-cita/'+element.id+'/save'" mat-icon-button color="primary">
+          <mat-icon style="color: #033649;">edit</mat-icon>
+        </button>
+        <button title="Eliminar" (click)="delete(element.id)" mat-icon-button color="warn">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let element; let index = index; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 15, 25]" showFirstLastButtons aria-label="Select page of periodic elements">
+  </mat-paginator>
+</div>

@@ -1,0 +1,33 @@
+<div class="flex" >
+    <aside 
+    [ngClass]="{'w-64': !isSidebarToggled, 'w-20': isSidebarToggled}"
+     class="flex flex-col justify-between min-h-screen" style="background-color:#033649">
+    <div>
+      <div class="flex items-center justify-center p-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/FRONT3X-Logo.png" alt="Logo" class="h-12" />
+      </div>
+      <nav class="p-4">
+        <ul class="space-y-5">
+          <li [routerLink]="item.route" *ngFor="let item of navItems">
+            <div  class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+              <i [class]="item.icon"></i>
+              <span *ngIf="!isSidebarToggled">{{item.title}}</span>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Cerrar Sesión al final -->
+    <div class="p-4">
+      <div class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span *ngIf="!isSidebarToggled">Cerrar Sesión</span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="flex-1">
+    <ng-content></ng-content>
+  </main>
+</div>

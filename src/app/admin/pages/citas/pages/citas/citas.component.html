@@ -1,0 +1,15 @@
+<div class="flex items-center justify-between mx-12 my-6">
+    <div class="text-3xl" style="color: #033649;">Citas</div>
+    <div class="example-button-row">
+        <button routerLink="guardar-cita/0/save" mat-flat-button
+            style="background-color: #3dcd4e;color: #fff;border-radius: 50px;"><i class="mr-2 fa-solid fa-plus"
+                style="color: #fff;"></i>Nuevo Cita</button>
+    </div>
+</div>
+
+<div class="mx-12">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="Tabla"> <app-listado-citas></app-listado-citas> </mat-tab>
+        <mat-tab label="Calendario"> <app-calendario></app-calendario> </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,52 @@
+ngx-mat-file-input{
+    height: 15px;
+    display: flex;
+    align-items: center;
+}
+.image-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .preview-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .delete-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .no-focus-border .mat-form-field-flex {
+    border-bottom: none !important;
+  }
+
+  .no-focus-border .mat-form-field-underline {
+    display: none !important;
+  }
+
+  .no-focus-border .mat-form-field-ripple {
+    display: none !important;
+  }
+
+  .no-focus-border .mat-input-element:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+  }

@@ -1,0 +1,55 @@
+<div class="flex items-center justify-between mx-12 my-6 ">
+    <div class="flex items-center text-3xl" style="color: #033649;">
+        <button routerLink="/admin/servicios" title="Atras" mat-icon-button>
+            <mat-icon>arrow_back</mat-icon>
+        </button>{{title}}
+    </div>
+</div>
+
+<div class="mx-12 bg-white rounded-md shadow-md">
+    <div class="pt-5 pl-10 text-lg font-semibold" style="color: #033649;">{{subtitle}} <span
+            style="color: #d7d7d7;">#{{id}}</span></div>
+
+    <form [formGroup]="form" class="p-10 ">
+        <div>
+            <div class="flex justify-between ">
+                <mat-form-field appearance="fill" style="width: 45%;">
+                    <mat-label>Servicio</mat-label>
+                    <input matInput formControlName="servicio" placeholder="Ingrese el servicio" required>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" style="width: 45%;">
+                    <mat-label>Precio</mat-label>
+                    <input matInput type="number" formControlName="precio" placeholder="Ingrese el precio" required>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="fill" style="width: 100%;height: 150px;">
+                <mat-label>Descripción</mat-label>
+                <textarea style="height: 150px;" formControlName="descripcion" matInput
+                    placeholder="Ingresa la descripción"></textarea>
+            </mat-form-field>
+
+            <input #fileInput type="file" accept="image/png, image/jpeg" (change)="onFileChange($event)">
+
+            <div class="mt-5">
+                <div class="image-container">
+                    <img width="180" class="preview-image" [src]="img" alt="preview">
+                    <button class="delete-button" (click)="clearImage()">X</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="flex justify-end gap-5">
+            <div class="example-button-row">
+                <button routerLink="/admin/servicios" mat-flat-button
+                    style="color: #033649;border-radius: 50px;border: 1px solid #033649;">Cancelar</button>
+            </div>
+            <div class="example-button-row">
+                <button (click)="ngSubmit()" mat-flat-button
+                    style="background-color: #3dcd4e;color: #fff;border-radius: 50px;">Guardar</button>
+            </div>
+        </div>
+    </form>
+
+</div>

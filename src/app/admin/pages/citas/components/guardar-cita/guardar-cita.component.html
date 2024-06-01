@@ -1,0 +1,117 @@
+<div class="flex items-center justify-between mx-12 my-6 ">
+  <div class="flex items-center text-3xl" style="color: #033649;">
+    <button routerLink="/admin/citas" title="Atras" mat-icon-button>
+      <mat-icon>arrow_back</mat-icon>
+    </button>{{title}}
+  </div>
+</div>
+
+<div class="mx-12 bg-white rounded-md shadow-md">
+  <div class="pt-5 pl-10 text-lg font-semibold" style="color: #033649;"> {{subtitle}} <span
+      style="color: #d7d7d7;">#{{id}}</span></div>
+
+  <form [formGroup]="form" class="p-10 ">
+    <div class="grid grid-cols-4 gap-5">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccione el cliente</mat-label>
+        <mat-select formControlName="clienteId">
+          <mat-option *ngFor="let item of clientes" [value]="item.id">
+            {{item.nombre}} {{item.apellido}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Hora</mat-label>
+        <input matInput [ngxMatTimepicker]="timePicker" formControlName="hora">
+        <ngx-mat-timepicker #timePicker></ngx-mat-timepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Seleccione el estado</mat-label>
+        <mat-select formControlName="estado" [(value)]="estadoDefault">
+          <mat-option value="pendiente">
+            PENDIENTE
+          </mat-option>
+          <mat-option value="cancelado">
+            CANCELADO
+          </mat-option>
+          <mat-option value="completado">
+            COMPLETADO
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+
+    <form *ngIf="!isViewMode" [formGroup]="formServicio" class="flex gap-5">
+      <mat-form-field appearance="fill" style="width: 24%;">
+        <mat-label>Seleccione el servicio</mat-label>
+        <mat-select formControlName="servicioId" (selectionChange)="onServicioChange($event)">
+          <mat-option *ngFor="let item of servicios" [value]="item.id">
+            {{item.servicio}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" style="width: 24%;">
+        <mat-label>Monto</mat-label>
+        <input formControlName="monto" matInput type="number" placeholder="Ingrese el precio" required>
+      </mat-form-field>
+
+      <div class="h-[55px] flex items-center">
+        <button (click)="addServicio()" [disabled]="formServicio.invalid" mat-flat-button
+          style="background-color: #3dcd4e;color: #fff;border-radius: 50px;">Agregar Servicio</button>
+      </div>
+    </form>
+
+    <div style="width: 50%;">
+      <h1 class="font-medium text-center bg-gray-100 ">Listado de Servicios</h1>
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z1">
+        <ng-container matColumnDef="servicio">
+          <th mat-header-cell *matHeaderCellDef> Servicio </th>
+          <td mat-cell *matCellDef="let element"> {{element.servicio}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="monto">
+          <th mat-header-cell *matHeaderCellDef> Monto </th>
+          <td mat-cell *matCellDef="let element"> {{element.monto | paraguayCurrency}} </td>
+        </ng-container>
+
+        <ng-container *ngIf="!isViewMode" matColumnDef="accion">
+          <th mat-header-cell *matHeaderCellDef> Acción </th>
+          <td mat-cell *matCellDef="let element; let index = index">
+
+            <button (click)="deleteServicio(index)" mat-icon-button color="warn">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let element; let index = index; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+
+    <div *ngIf="!isViewMode" class="flex justify-end gap-5">
+      <div class="example-button-row">
+        <button routerLink="/admin/citas" mat-flat-button
+          style="color: #033649;border-radius: 50px;border: 1px solid #033649;">Cancelar</button>
+      </div>
+      <div class="example-button-row">
+        <button (click)="ngSubmit()"
+          [disabled]="form.invalid && citasServicios.length <= 0 && (!form.dirty && !formServicio.dirty) "
+          mat-flat-button style="background-color: #3dcd4e;color: #fff;border-radius: 50px;">Guardar</button>
+      </div>
+    </div>
+  </form>
+</div>

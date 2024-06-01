@@ -1,0 +1,48 @@
+<div class="flex">
+    <aside class="flex flex-col justify-between w-20 min-h-screen" style="background-color:#033649">
+    <div>
+      <div class="flex items-center justify-center p-4">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/14/FRONT3X-Logo.png" alt="Logo" class="h-12" />
+      </div>
+      <nav class="p-4">
+        <ul class="space-y-5">
+          <li>
+            <div class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+          </li>
+          <li>
+            <div href="#" class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+              <i class="fa-solid fa-notes-medical"></i>
+              
+            </div>
+          </li>
+          <li>
+            <div href="#" class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+              <i class="fa-solid fa-calendar-days"></i>
+              
+            </div>
+          </li>
+          <li>
+            <div href="#" class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+              <i class="fa-solid fa-money-bill"></i>
+              
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Cerrar Sesión al final -->
+    <div class="p-4">
+      <div class="flex items-center gap-3 px-4 py-4 text-white rounded cursor-pointer hover:bg-customGreen">
+        <i class="fa-solid fa-right-from-bracket"></i>
+       
+      </div>
+    </div>
+  </aside>
+  <main class="flex-1">
+    <ng-content></ng-content>
+  </main>
+  
+  </div>
